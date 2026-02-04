@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signalement Numéro WhatsApp</title>
+  <style>
+    body {font-family: Arial, sans-serif; background:#0f172a; color:#e5e7eb; padding:20px}
+    .box {max-width:500px; margin:auto; background:#020617; padding:20px; border-radius:10px}
+    h1 {color:#22c55e; text-align:center}
+    input, textarea, button {
+      width:100%; margin-top:10px; padding:10px; border-radius:6px; border:none
+    }
+    button {background:#22c55e; color:#000; font-weight:bold; cursor:pointer}
+    button:hover {background:#16a34a}
+    .note {font-size:12px; color:#94a3b8; margin-top:10px}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🚨 Signaler un numéro WhatsApp</h1>
+    <input type="text" id="numero" placeholder="Numéro suspect (ex: +241xxxxxxxx)" />
+    <textarea id="raison" rows="4" placeholder="Pourquoi ce numéro est suspect ?"></textarea>
+    <button onclick="signaler()">🚨 Signaler</button>
+    <button onclick="signalerEtBloquer()" style="background:#ef4444;color:#fff;margin-top:10px">⛔ Signaler et bloquer</button>
+    <p class="note">⚠️ Ceci est un site non officiel. Le signalement sera préparé pour WhatsApp.</p>
+  </div>  
+  <script>
+    function signaler() {
+      const numero = document.getElementById('numero').value;
+      const raison = document.getElementById('raison').value;
+
+      if (!numero || !raison) {
+        alert('Remplis tous les champs');
+        return;
+      }
+
+      const message = `Bonjour l'équipe WhatsApp,%0A%0AJe souhaite signaler le numéro suivant comme suspect :%0A${numero}%0A%0ARaison :%0A${raison}%0A%0AMerci.`;
+
+      window.open(`https://wa.me/15128638738?text=${message}`, '_blank');
+    }
+  
+    function signalerEtBloquer() {
+      const numero = document.getElementById('numero').value;
+      const raison = document.getElementById('raison').value;
+
+      if (!numero || !raison) {
+        alert('Remplis tous les champs');
+        return;
+      }
+
+      const message = `Bonjour l'équipe WhatsApp,%0A%0AJe souhaite signaler et bloquer le numéro suivant :%0A${numero}%0A%0ARaison :%0A${raison}%0A%0AMerci.`;
+
+      window.open(`https://wa.me/15128638738?text=${message}`, '_blank');
+
+      setTimeout(() => {
+        alert('Après l’envoi du signalement :\n1️⃣ Ouvre la discussion avec le numéro\n2️⃣ Appuie sur ⋮\n3️⃣ Bloquer et signaler');
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
